@@ -416,15 +416,6 @@ def plot_graph(person, transition_time):
     if event.data.gossipHash != '\0' and event.round - 1 >= person.min_round:
       edges.append((event.hash, event.data.gossipHash))
 
-  # if len(person.hashgraph) > 100:
-  #   hashes = [event.hash for event in person.hashgraph]
-  #   hashes.sort()
-  #   print(hashes)
-  # print(len(person.hashgraph),len(positions.keys()))
-  # for _, event in enumerate(person.hashgraph):
-  #   if event.data.gossipHash in positions.keys():
-  #     edges.append((event.hash, event.data.gossipHash))
-
   G.add_edges_from(edges)
   options = {"node_size": 100, 
               "node_color": "black", 
@@ -433,8 +424,6 @@ def plot_graph(person, transition_time):
               "font_color": "white"}
   nx.draw_networkx(G, positions, cmap = plt.get_cmap('jet'), with_labels=True, **options)
   plt.pause(transition_time)
-  # plt.show()
-  # figure.canvas.draw()
 
 people = [Person(i) for i in range(N)]
 
